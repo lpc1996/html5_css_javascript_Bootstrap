@@ -144,5 +144,58 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			var calendar = document.getElementById("calendar");
+			var table=calendar.getElementsByTagName("table")[0];
+			var dateArray = new Array();
+			var date={
+				year:0,
+				month:0,
+				wday:0,
+				day:0,
+				hour:0,
+				minute:0,
+				second:0,
+				isLeapYear:false,
+				weekNum:0,
+				dayStart:0,
+			};
+			function InitCalendar(){
+				var d = new Date();
+				date.year=d.getYear()+1900;
+				date.month=d.getMonth()+1;
+				date.day=d.getDate();
+				date.wday=d.getDay();
+				date.hour=d.getHours();
+				date.minute=d.getMinutes();
+				date.second=d.getSeconds();
+				if((date.year%4==0 && date.year%100!=0) || (date.year%400==0)){
+					date.isLeapYear=true;
+				}
+				var m=0;
+				if(date.month%2==0){
+					if(date.month ==2){
+						if(date.isLeapYear){
+							m=28;
+						}
+						else{
+							m=29;
+						}
+					}else{
+						m=30;
+					}
+				}else{
+					m=31;
+				}
+				date.dayStart=dayStart();
+				console.log(date.dayStart);
+				table.getElementsByClassName("month")[0].append(date.year+"年"+date.month+"月");
+				
+			}
+			function dayStart(){
+				return date.day%7;
+			}
+			InitCalendar();
+		</script>
 	</body>
 </html>

@@ -1,3 +1,7 @@
 .view td{
 	width:16px;
 }
+
+.month{
+	text-align: center;
+}
